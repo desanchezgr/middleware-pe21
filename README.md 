@@ -1,0 +1,15 @@
+Sin API key -> esperado: 401
+comando: curl http://localhost:3000/health
+salida real de terminal: GET /health -> 401 (6ms)
+observación: El middleware bloquea la petición antes de que llegue a la ruta porque el header x-api-key hace falta, devolviendo un JSON con el mensaje de error de autenticación.
+
+Con clave válida -> esperado: 200
+comando: curl -H "x-api-key: secreto-demo" http://localhost:3000/health
+salida real de terminal: GET /health -> 200 (1ms)
+observación: Al incluir la clave correcta en la cabecera, el middleware permite el acceso con éxito y el endpoint responde con un JSON que contiene el estado "ok" y la fecha/hora actual de la consulta.
+
+Ruta inexistente -> esperado: 404
+comando: curl -H "x-api-key: secreto-demo" http://localhost:3000/noexiste
+salida real de termianl: GET /noexiste -> 404 (1ms)
+observación: La petición pasa la seguridad de la API key correctamente, pero el enrutador de Express no encuentra la ruta /noexiste, respondiendo con la plantilla HTML por defecto para un error 404.
+
