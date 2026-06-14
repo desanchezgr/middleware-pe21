@@ -13,3 +13,13 @@ comando: curl -H "x-api-key: secreto-demo" http://localhost:3000/noexiste
 salida real de termianl: GET /noexiste -> 404 (1ms)
 observación: La petición pasa la seguridad de la API key correctamente, pero el enrutador de Express no encuentra la ruta /noexiste, respondiendo con la plantilla HTML por defecto para un error 404.
 
+## Testing
+
+Para asegurar el correcto funcionamiento del **Logger** y del **Verificador de API Key** (interceptores) ante escenarios con entradas válidas e inválidas, se han implementado pruebas unitarias aisladas utilizando **Jest** y **ts-jest**. Las pruebas se ejecutan directamente sobre los archivos TypeScript mediante objetos *mock* para simular el ciclo de solicitud y respuesta de Express, garantizando su validez sin necesidad de inicializar o levantar el servidor de desarrollo.
+
+### Comando de ejecución
+
+Asegúrate de estar situado en el directorio del proyecto donde se encuentra el archivo `package.json` configurado (`middleware/api_derky`) y ejecuta:
+
+```bash
+npm test
