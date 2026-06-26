@@ -105,6 +105,6 @@ Copia `.env.example` a `.env` y configura `JWT_SECRET` con un valor secreto larg
 
 ![prueba 2](docs/screenshots/PE23_prueba2_401.png)
 
-### Prueba 3 ##
+### Prueba 3 ###
 
 ![prueba 3](docs/screenshots/PE23_prueba3_401.png)
