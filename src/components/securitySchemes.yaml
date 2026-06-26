@@ -1,0 +1,43 @@
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+  schemas:
+    InscripcionV1:
+      type: object
+      required:
+        - estudianteId
+        - materias
+        - periodoId
+      properties:
+        estudianteId:
+          type: string
+          format: uuid
+        materias:
+          type: array
+          items:
+            type: string
+          minItems: 1
+        periodoId:
+          type: string
+
+    InscripcionV2:
+      allOf:
+        - $ref: '#/components/schemas/InscripcionV1'
+
+        - type: object
+          required:
+            - payment_method
+
+          properties:
+            payment_method:
+              type: string
+              enum:
+                - debit
+                - credit
+                - scholarship
+
+          unevaluatedProperties: false
